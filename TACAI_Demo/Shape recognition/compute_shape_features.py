@@ -25,7 +25,6 @@ featuresList = ['HU','ZERNIKE','MOMENTS'];
 file_to_save = 'image_list.csv';
 
 images = [];
-labels = [];
 descriptors = [];
 
 #Take all the elements from the image directory and put them into a list
@@ -33,7 +32,7 @@ for file in dirs:
     images.append(file);
 
 #Save the list of the files from the directory
-df = pd.DataFrame(images, columns=["colummn"])
+df = pd.DataFrame(images, columns=["colummn"], header=False);
 df.to_csv(file_to_save, index=False)
 
 #Generate features
@@ -50,23 +49,25 @@ for currentFeature in featuresList:
     for file in images:
 
         img = imread(root + file);
+        img = color.rgb2gray(img);
         print (file);
 
+        #compute Zernike moments
         if(currentFeature == 'ZERNIKE'):
-            img = color.rgb2gray(img);
-            hist = mahotas.features.zernike_moments(img, 21)
-            descriptors.append(hist);
+            hist = mahotas.features.zernike_moments(img, 21);
 
+        #compute Hu moments
         if(currentFeature == 'HU'):
-            img = color.rgb2gray(img);
-            hist = cv2.HuMoments(cv2.moments(img)).flatten()
-            descriptors.append(hist);
+            hist = cv2.HuMoments(cv2.moments(img)).flatten();
 
+        #compute shape moments
         if(currentFeature == 'MOMENTS'):
-            img = color.rgb2gray(img);
             hist = cv2.moments(img)
-            descriptors.append(hist);
+        
+        #append the current feature
+        descriptors.append(hist);
 
+    #save feature in a csv file
     feature_filename = currentFeature + '.csv';
-    df = pd.DataFrame(descriptors)
-    df.to_csv(feature_filename, index=False)
+    df = pd.DataFrame(descriptors);
+    df.to_csv(feature_filename, index=False, header=False);
