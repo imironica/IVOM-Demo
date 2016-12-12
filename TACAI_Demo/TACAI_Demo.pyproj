@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>f11d6785-23a1-4e40-bd0f-f54a879e8609</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Shape recognition\compute_shape_features.py</StartupFile>
+    <StartupFile>Motion detection\motion_estimator_mean_filter.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,11 +22,18 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Motion detection\motion_estimator_frame_difference.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Motion detection\motion_estimator_mean_filter.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Shape recognition\compute_shape_features.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Motion detection\" />
     <Folder Include="Shape recognition\" />
     <Folder Include="Shape recognition\ShapeDB\" />
   </ItemGroup>

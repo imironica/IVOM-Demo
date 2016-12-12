@@ -32,8 +32,8 @@ for file in dirs:
     images.append(file);
 
 #Save the list of the files from the directory
-df = pd.DataFrame(images, columns=["colummn"], header=False);
-df.to_csv(file_to_save, index=False)
+df = pd.DataFrame(images, columns=["colummn"]);
+df.to_csv(file_to_save, index=False, header = False)
 
 #Generate features
 print ('Generate features');
@@ -70,4 +70,4 @@ for currentFeature in featuresList:
     #save feature in a csv file
     feature_filename = currentFeature + '.csv';
     df = pd.DataFrame(descriptors);
-    df.to_csv(feature_filename, index=False, header=False);
+    df.to_csv(feature_filename, index=False, header = False);
