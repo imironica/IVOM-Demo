@@ -4,41 +4,39 @@ import scipy.misc
 
 #Parameters of the algorithms
 threshold = 40;
-lstNumberOfElements = 150;
+lstNumberOfElements = 10;
 
 #Read from the webcam stream
 cam = cv2.VideoCapture(0);
 
 #Open a new window
-winName = "Motion estimator Mean Filter"
+winName = "Motion estimator Median Filter"
 cv2.namedWindow(winName)
 
 #list of frames for the 
-lstLastFrames = [];
+lstFrames = cv2.cvtColor(cam.read()[1], cv2.COLOR_RGB2GRAY);
+lstFrames = np.expand_dims(lstFrames, axis=2);
 
 # Read first images (for the mean filter):
-index = 0;
+index = 1;
 while(index < lstNumberOfElements):
-    lstLastFrames.append(cv2.cvtColor(cam.read()[1], cv2.COLOR_RGB2GRAY));
+    lstFrames = np.append(lstFrames, np.expand_dims(cv2.cvtColor(cam.read()[1], cv2.COLOR_RGB2GRAY), axis=2), axis = 2);
     index = index + 1;
 
 
 while True:
-    mediumFilter = np.matrix(lstLastFrames[0]).astype(int);
-    for i in range(1,lstNumberOfElements):
-        mediumFilter = np.matrix(mediumFilter) + np.matrix(lstLastFrames[i]).astype(int);
-    mediumFilter = np.divide(mediumFilter, lstNumberOfElements).astype(int);
-
+    #Compute the median filter
+    mediumFilter = np.median(lstFrames, axis = 2);
     # Read next image
-    del lstLastFrames[0];
     currentFrame = cv2.cvtColor(cam.read()[1], cv2.COLOR_RGB2GRAY);
-    lstLastFrames.append(currentFrame);
-
     currentElement = np.abs(mediumFilter - currentFrame.astype(int));
   
-    currentElement[currentElement < threshold] = -125;  
-    currentElement[currentElement >= threshold] = 125;
+    currentElement[currentElement < threshold] = -127;  
+    currentElement[currentElement >= threshold] = 127;
     currentElement = currentElement.astype(np.int8);
+
+    lstFrames = np.append(lstFrames, np.expand_dims(cv2.cvtColor(cam.read()[1], cv2.COLOR_RGB2GRAY), axis=2), axis = 2);
+
     cv2.imshow( winName, currentElement );
     key = cv2.waitKey(10)
     if key == 27:

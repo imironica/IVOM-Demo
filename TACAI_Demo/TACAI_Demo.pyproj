@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>f11d6785-23a1-4e40-bd0f-f54a879e8609</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Motion detection\motion_estimator_mean_filter.py</StartupFile>
+    <StartupFile>Motion detection\motion_detection_median_filter.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,10 +22,20 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Motion detection\motion_detection_median_filter.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Motion detection\motion_detection_moving_average.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Motion detection\motion_estimator_frame_difference_v2.py" />
     <Compile Include="Motion detection\motion_estimator_frame_difference.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Motion detection\motion_estimator_mean_filter.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Motion detection\motion_optical_flow.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Shape recognition\compute_shape_features.py">
