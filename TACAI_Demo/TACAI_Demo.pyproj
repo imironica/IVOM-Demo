@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>f11d6785-23a1-4e40-bd0f-f54a879e8609</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Motion detection\motion_detection_median_filter.py</StartupFile>
+    <StartupFile>Motion detection\motion_optical_flow_LucasKanade.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -35,7 +35,10 @@
     <Compile Include="Motion detection\motion_estimator_mean_filter.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Motion detection\motion_optical_flow.py">
+    <Compile Include="Motion detection\motion_optical_flow_Farneback.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Motion detection\motion_optical_flow_LucasKanade.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Shape recognition\compute_shape_features.py">
@@ -44,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Motion detection\" />
+    <Folder Include="Motion detection\savedFrames\" />
     <Folder Include="Shape recognition\" />
     <Folder Include="Shape recognition\ShapeDB\" />
   </ItemGroup>

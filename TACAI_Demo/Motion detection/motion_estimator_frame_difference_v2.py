@@ -1,4 +1,6 @@
 import cv2
+#Operating system libraries
+import os, sys
 
 def diffImg(t0, t1, t2):
     d1 = cv2.absdiff(t2, t1)
