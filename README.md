@@ -1,5 +1,5 @@
-# TACAI Demos
-<strong>TACAI course demos</strong>
+# IVOM Demos
+<strong>IVOM course demos</strong>
 <br />
 <strong>Instalation guideline</strong>
 <br />
