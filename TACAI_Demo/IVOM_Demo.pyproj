@@ -4,13 +4,14 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>f11d6785-23a1-4e40-bd0f-f54a879e8609</ProjectGuid>
-    <ProjectHome>.</ProjectHome>
-    <StartupFile>Motion detection\motion_optical_flow_LucasKanade.py</StartupFile>
+    <ProjectHome>
+    </ProjectHome>
+    <StartupFile>Motion detection\motion_detection_median_filter.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>TACAI_Demo</Name>
+    <Name>IVOM_Demo</Name>
     <RootNamespace>TACAI_Demo</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -22,6 +23,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="KeypointsDetector\keypoints_detection.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Motion detection\motion_detection_median_filter.py">
       <SubType>Code</SubType>
     </Compile>
@@ -48,6 +52,7 @@
   <ItemGroup>
     <Folder Include="Motion detection\" />
     <Folder Include="Motion detection\savedFrames\" />
+    <Folder Include="KeypointsDetector\" />
     <Folder Include="Shape recognition\" />
     <Folder Include="Shape recognition\ShapeDB\" />
   </ItemGroup>

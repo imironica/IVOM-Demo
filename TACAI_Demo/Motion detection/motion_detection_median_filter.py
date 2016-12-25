@@ -8,7 +8,7 @@ import os, sys
 threshold = 50;
 lstNumberOfElements = 150;
 saveFrames = True;
-showBackground = True;
+showBackground = False;
 root = os.path.dirname(os.path.realpath(__file__)) + '\\savedFrames\\';
 
 #Read from the webcam stream
