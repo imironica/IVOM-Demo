@@ -6,7 +6,7 @@
     <ProjectGuid>f11d6785-23a1-4e40-bd0f-f54a879e8609</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>Motion detection\motion_detection_median_filter.py</StartupFile>
+    <StartupFile>KeypointsDetector\compute_gaussian_filter.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -23,6 +23,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="KeypointsDetector\compute_gaussian_filter.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="KeypointsDetector\keypoints_detection.py">
       <SubType>Code</SubType>
     </Compile>
