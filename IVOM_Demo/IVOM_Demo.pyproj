@@ -6,7 +6,7 @@
     <ProjectGuid>f11d6785-23a1-4e40-bd0f-f54a879e8609</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>KeypointsDetector\keypoints_detection.py</StartupFile>
+    <StartupFile>KeypointsDetector\keypoints_matcher.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -27,6 +27,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="KeypointsDetector\keypoints_detection.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="KeypointsDetector\keypoints_matcher.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Motion detection\motion_detection_median_filter.py">
@@ -60,6 +63,7 @@
     <Folder Include="Shape recognition\ShapeDB\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="KeypointsDetector\searched_object.jpg" />
     <Content Include="Shape recognition\ShapeDB\apple-1.gif" />
     <Content Include="Shape recognition\ShapeDB\apple-10.gif" />
     <Content Include="Shape recognition\ShapeDB\apple-11.gif" />

@@ -1,6 +1,6 @@
 import cv2 
 import numpy as np
-#possible values: BRISK, KAZE, SIFT, SURF, //ORB, GOOD, MSER, FREAK
+#possible values: BRISK, KAZE, SIFT, SURF, MSER, FREAK
 detectorNames = [ 'BRISK', 'KAZE', 'SIFT', 'SURF', 'MSER','FAST','AKAZE'];
  
 cam = cv2.VideoCapture(0);
@@ -15,7 +15,7 @@ while True:
     for detectorName in detectorNames:
         image = cam.read()[1];
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY);
-
+        
         if(detectorName == "SIFT"):
             detector = cv2.xfeatures2d.SIFT_create();
             (kps, descs) = detector.detectAndCompute(gray, None);

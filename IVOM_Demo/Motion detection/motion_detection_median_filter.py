@@ -7,7 +7,7 @@ import os, sys
 #Parameters of the algorithms
 threshold = 50;
 lstNumberOfElements = 50;
-saveFrames = False;
+saveFrames = True;
 showBackground = True;
 root = os.path.dirname(os.path.realpath(__file__)) + '\\savedFrames\\';
 
@@ -35,7 +35,7 @@ while(index < lstNumberOfElements):
 index = 0;
 while True:
     #Compute the median filter
-    mediamFilter = np.median(lstFrames, axis = 2);
+    medianFilter = np.median(lstFrames, axis = 2);
     # Read next image
     currentFrame = cv2.cvtColor(cam.read()[1], cv2.COLOR_RGB2GRAY);
     currentElement = np.abs(mediamFilter - currentFrame.astype(int)).astype(np.uint8);
@@ -46,7 +46,7 @@ while True:
     lstFrames = np.append(lstFrames, np.expand_dims(cv2.cvtColor(cam.read()[1], cv2.COLOR_RGB2GRAY), axis=2), axis = 2);
 
     if(showBackground == True):
-        cv2.imshow( winNameBackground,  mediamFilter.astype(np.uint8));
+        cv2.imshow( winNameBackground,  medianFilter.astype(np.uint8));
     
     cv2.imshow( winNameMotion, currentElement);
     key = cv2.waitKey(10);
@@ -61,7 +61,7 @@ while True:
     if(saveFrames == True):
         filename = root + str(index) + '.jpg';
         if(showBackground == True):
-            scipy.misc.imsave(filename, mediumFilter.astype(np.uint8));
+            scipy.misc.imsave(filename, medianFilter.astype(np.uint8));
         else:
             scipy.misc.imsave(filename, currentElement);
  
