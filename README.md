@@ -23,8 +23,9 @@ Install the following Python packages (using pip or .whl packages from http://ww
  - Keypoints examples: <br />
  &nbsp; - compute gaussian filter;<br />
  &nbsp; - keypoints detection (BRISK, KAZE, SIFT, SURF, MSER, FAST, AKAZE detectors); <br />
- &nbsp; - keypoints matching (BRISK, KAZE, SIFT, SURF, FAST, AKAZE detectors) using Brute force maching and Flann matching. <br />  <br /> 
-  - Machine learning examples: <br />
+ &nbsp; - keypoints matching (BRISK, KAZE, SIFT, SURF, FAST, AKAZE detectors) using Brute force maching and Flann matching. 
+ <br /><br /> 
+ - Machine learning examples: <br />
  &nbsp; - classifiers comparison;<br />
  &nbsp; - computation of several ML algorithms. <br /> 
      
