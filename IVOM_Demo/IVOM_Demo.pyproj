@@ -6,7 +6,7 @@
     <ProjectGuid>f11d6785-23a1-4e40-bd0f-f54a879e8609</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>KeypointsDetector\keypoints_matcher.py</StartupFile>
+    <StartupFile>KeypointsDetector\keypoints_matcher_brute_force.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -29,7 +29,8 @@
     <Compile Include="KeypointsDetector\keypoints_detection.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="KeypointsDetector\keypoints_matcher.py">
+    <Compile Include="KeypointsDetector\keypoints_matcher_Flann.py" />
+    <Compile Include="KeypointsDetector\keypoints_matcher_brute_force.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Motion detection\motion_detection_median_filter.py">
