@@ -6,17 +6,21 @@ import os, sys
 
 #Parameters of the algorithms
 threshold = 50;
-lstNumberOfElements = 150;
-saveFrames = True;
-showBackground = False;
+lstNumberOfElements = 50;
+saveFrames = False;
+showBackground = True;
 root = os.path.dirname(os.path.realpath(__file__)) + '\\savedFrames\\';
 
 #Read from the webcam stream
 cam = cv2.VideoCapture(0);
 
 #Open a new window
-winName = "Motion estimator Median Filter"
-cv2.namedWindow(winName)
+winNameMotion = "Motion estimator Median Filter"
+cv2.namedWindow(winNameMotion)
+
+if(showBackground == True):
+    winNameBackground = "Background estimator Median Filter";
+    cv2.namedWindow(winNameBackground);
 
 #list of frames for the 
 lstFrames = cv2.cvtColor(cam.read()[1], cv2.COLOR_RGB2GRAY);
@@ -31,10 +35,10 @@ while(index < lstNumberOfElements):
 index = 0;
 while True:
     #Compute the median filter
-    mediumFilter = np.median(lstFrames, axis = 2);
+    mediamFilter = np.median(lstFrames, axis = 2);
     # Read next image
     currentFrame = cv2.cvtColor(cam.read()[1], cv2.COLOR_RGB2GRAY);
-    currentElement = np.abs(mediumFilter - currentFrame.astype(int)).astype(np.uint8);
+    currentElement = np.abs(mediamFilter - currentFrame.astype(int)).astype(np.uint8);
   
     currentElement[currentElement < threshold] = 0;  
     currentElement[currentElement >= threshold] = 255;
@@ -42,13 +46,15 @@ while True:
     lstFrames = np.append(lstFrames, np.expand_dims(cv2.cvtColor(cam.read()[1], cv2.COLOR_RGB2GRAY), axis=2), axis = 2);
 
     if(showBackground == True):
-        cv2.imshow( winName,  mediumFilter.astype(np.uint8));
-    else:
-        cv2.imshow( winName, currentElement);
-    key = cv2.waitKey(10)
+        cv2.imshow( winNameBackground,  mediamFilter.astype(np.uint8));
+    
+    cv2.imshow( winNameMotion, currentElement);
+    key = cv2.waitKey(10);
     if key == 27:
-        cv2.destroyWindow(winName)
-        break
+        cv2.destroyWindow(winNameMotion)
+        if(showBackground == True):
+            cv2.destroyWindow(winNameBackground);
+        break;
 
     #Save the image
     index = index + 1;

@@ -10,7 +10,7 @@ threshold = 50;
 useGaussianFilter = False;
 useMedianFilter = True;
 useUniformFilter = False;
-skipFrames = 4;
+skipFrames = 2;
 
 showBackground = True;
 saveFrames = True;
@@ -20,8 +20,11 @@ root = os.path.dirname(os.path.realpath(__file__)) + '\\savedFrames\\';
 cam = cv2.VideoCapture(0);
 
 #Open a new window
-winName = "Motion estimator frame difference";
-cv2.namedWindow(winName);
+winNameMotion = "Motion estimator frame difference";
+cv2.namedWindow(winNameMotion);
+if(showBackground == True):
+    winNameBackground = "Background estimator frame difference";
+    cv2.namedWindow(winNameBackground);
 
 # Read first images:
 index = 0
@@ -32,7 +35,7 @@ while True:
 
     #skip frames
     index = 0;
-    while(index<skipFrames):
+    while(index < skipFrames):
         currentFrame = cv2.cvtColor(cam.read()[1], cv2.COLOR_RGB2GRAY);
         index = index +1;
     
@@ -54,10 +57,15 @@ while True:
     currentElement[currentElement >= threshold] = 255;
 
     #show the image
-    cv2.imshow(winName, currentElement)
+    cv2.imshow(winNameMotion, currentElement);
+    if(showBackground == True):
+        cv2.imshow(winNameBackground,  firstFrame.astype(np.uint8));
+
     key = cv2.waitKey(10)
     if key == 27:
-        cv2.destroyWindow(winName)
+        cv2.destroyWindow(winNameMotion);
+        if(showBackground == True):
+            cv2.destroyWindow(winNameBackground);
         break
 
     #Save the image

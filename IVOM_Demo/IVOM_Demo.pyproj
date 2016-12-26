@@ -6,7 +6,7 @@
     <ProjectGuid>f11d6785-23a1-4e40-bd0f-f54a879e8609</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>KeypointsDetector\compute_gaussian_filter.py</StartupFile>
+    <StartupFile>KeypointsDetector\keypoints_detection.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
