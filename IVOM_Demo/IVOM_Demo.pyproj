@@ -6,7 +6,7 @@
     <ProjectGuid>f11d6785-23a1-4e40-bd0f-f54a879e8609</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>KeypointsDetector\keypoints_matcher_brute_force.py</StartupFile>
+    <StartupFile>Machine Learning\compute_classic_ML_algorithms.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -33,6 +33,15 @@
     <Compile Include="KeypointsDetector\keypoints_matcher_brute_force.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Machine Learning\classifier_comparison.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Machine Learning\compute_classic_ML_algorithms.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Machine Learning\ML_result.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Motion detection\motion_detection_median_filter.py">
       <SubType>Code</SubType>
     </Compile>
@@ -52,6 +61,7 @@
     <Compile Include="Motion detection\motion_optical_flow_LucasKanade.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Shape recognition\compute_shape_features_with_labels.py" />
     <Compile Include="Shape recognition\compute_shape_features.py">
       <SubType>Code</SubType>
     </Compile>
@@ -60,6 +70,7 @@
     <Folder Include="Motion detection\" />
     <Folder Include="Motion detection\savedFrames\" />
     <Folder Include="KeypointsDetector\" />
+    <Folder Include="Machine Learning\" />
     <Folder Include="Shape recognition\" />
     <Folder Include="Shape recognition\ShapeDB\" />
   </ItemGroup>

@@ -48,28 +48,29 @@ while True:
     bf = cv2.BFMatcher()
 
     # Match descriptors.
-    matches = bf.knnMatch(descsQuery,descs, k=2);
-    # Apply ratio test
-    good = [];
-    matchesCount = 0;
-    for m,n in matches:
-        if m.distance < 0.75*n.distance:
-            good.append([m]);
-            matchesCount +=1;
+    if(descs != None):
+        matches = bf.knnMatch(descsQuery,descs, k=2);
+        # Apply ratio test
+        good = [];
+        matchesCount = 0;
+        for m,n in matches:
+            if m.distance < 0.75*n.distance:
+                good.append([m]);
+                matchesCount +=1;
 
-    # cv2.drawMatchesKnn expects list of lists as matches.
-    imgResult = cv2.drawMatchesKnn(imgQuery,kpsQuery,image,kps,good, outImg = None, flags=2)
+        # cv2.drawMatchesKnn expects list of lists as matches.
+        imgResult = cv2.drawMatchesKnn(imgQuery,kpsQuery,image,kps,good, outImg = None, flags=2)
  
-    resultText = '';
-    if(matchesCount > descsQuery.shape[1]/3):
-        resultText = 'Object found';
-    else:
-        resultText = 'Object not found';
+        resultText = '';
+        if(matchesCount > descsQuery.shape[1]/3):
+            resultText = 'Object found';
+        else:
+            resultText = 'Object not found';
  
 
-    font = cv2.FONT_HERSHEY_SIMPLEX;
-    cv2.putText(imgResult,resultText,(10,90), font, 3,(0,255,255),2,cv2.LINE_AA);
-    cv2.imshow(detectorName, imgResult);
+        font = cv2.FONT_HERSHEY_SIMPLEX;
+        cv2.putText(imgResult,resultText,(10,90), font, 3,(0,255,255),2,cv2.LINE_AA);
+        cv2.imshow(detectorName, imgResult);
 
     key = cv2.waitKey(10)
     if key == 27:

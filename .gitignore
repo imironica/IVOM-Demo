@@ -251,3 +251,5 @@ paket-files/
 .idea/
 *.sln.iml
 /IVOM_Demo/Motion detection/savedFrames
+*.csv
+*.pyc
