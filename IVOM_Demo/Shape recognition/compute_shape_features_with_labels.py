@@ -20,7 +20,7 @@ warnings.filterwarnings("ignore")
 #Read image names from the root folder
 root = os.path.dirname(os.path.realpath(__file__)) + '\\ShapeDB\\';
 dirs = os.listdir(root);
-
+ 
 featuresList = ['HU','ZERNIKE','MOMENTS'];
 file_to_save = 'image_list.csv';
 
