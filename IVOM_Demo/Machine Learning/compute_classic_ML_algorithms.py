@@ -20,7 +20,7 @@ import warnings
 
 warnings.filterwarnings("ignore")
 
-####PARAMETERS#############
+# PARAMETERS
 
 
 computeSVM = True
@@ -104,7 +104,7 @@ if computeNearestNeighbors:
     clfNB.fit(descriptorsTrain, labelsTrain)
 
     # Compute the accuracy of the model
-    descriptorName = 'Nearest Neighbors (3) '
+    descriptorName = 'Nearest Neighbors (3)'
     predictedValues = []
     for descriptor in descriptorsTest:
         valuePredicted = clfNB.predict(descriptor)[0]
@@ -120,7 +120,7 @@ if computeNaiveBayes:
     clf.fit(descriptorsTrain, labelsTrain)
 
     # Compute the accuracy of the model
-    descriptorName = 'Naive Bayes '
+    descriptorName = 'Naive Bayes'
     predictedValues = []
     for descriptor in descriptorsTest:
         valuePredicted = clf.predict(descriptor)[0]
@@ -152,9 +152,9 @@ if computeDecisionTrees:
 if computeAdaboost:
     descriptorName = 'Adaboost Classifier '
     clf = AdaBoostClassifier(n_estimators=30)
-    clf.fit(descriptorsTrain, labelsTrain);
+    clf.fit(descriptorsTrain, labelsTrain)
 
-    ##compute the accuracy of the model
+    # Compute the accuracy of the model
     predictedValues = []
     for descriptor in descriptorsTest:
         valuePredicted = clf.predict(descriptor)[0]
@@ -169,10 +169,10 @@ if computeAdaboost:
 if computeGradientBoosting:
     descriptorName = 'Gradient Boosting Classifier'
     clf = GradientBoostingClassifier(n_estimators=30, learning_rate=1.0, max_depth=1, random_state=0)
-    clf.fit(descriptorsTrain, labelsTrain);
+    clf.fit(descriptorsTrain, labelsTrain)
 
     # Compute the accuracy of the model
-    predictedValues = [];
+    predictedValues = []
     for descriptor in descriptorsTest:
         valuePredicted = clf.predict(descriptor)[0]
         predictedValues.append(valuePredicted)
@@ -186,7 +186,7 @@ if computeRandomForest:
     descriptorName = 'Random Forest Classifier'
     # Train the model
     clfRF = RandomForestClassifier(n_estimators=30, criterion="gini")
-    clfRF.fit(descriptorsTrain, labelsTrain);
+    clfRF.fit(descriptorsTrain, labelsTrain)
 
     # Compute the accuracy of the model
     predictedValues = [];
@@ -197,9 +197,9 @@ if computeRandomForest:
     performance = MLResult(descriptorName, labelsTest, predictedValues)
     performance.showResults()
 
-# ExtremellyRandomForestClassifier
+# Extra Random Forest Classifier
 if computeExtremellyRandomForest:
-    descriptorName = 'Extremelly Trees Classifier'
+    descriptorName = 'Extra Trees Classifier'
     # Train the model
     clfRF = ExtraTreesClassifier(n_estimators=30, criterion="gini")
     clfRF.fit(descriptorsTrain, labelsTrain)

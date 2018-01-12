@@ -18,7 +18,7 @@ cam = cv2.VideoCapture(0)
 winNameMotion = "Motion estimator Median Filter"
 cv2.namedWindow(winNameMotion)
 
-if (showBackground == True):
+if showBackground:
     winNameBackground = "Background estimator Median Filter"
     cv2.namedWindow(winNameBackground)
 
@@ -28,7 +28,7 @@ lstFrames = np.expand_dims(lstFrames, axis=2)
 
 # Read first images (for the mean filter):
 index = 1
-while (index < lstNumberOfElements):
+while index < lstNumberOfElements:
     lstFrames = np.append(lstFrames, np.expand_dims(cv2.cvtColor(cam.read()[1], cv2.COLOR_RGB2GRAY), axis=2), axis=2)
     index = index + 1
 
@@ -45,22 +45,22 @@ while True:
 
     lstFrames = np.append(lstFrames, np.expand_dims(cv2.cvtColor(cam.read()[1], cv2.COLOR_RGB2GRAY), axis=2), axis=2)
 
-    if (showBackground == True):
+    if showBackground:
         cv2.imshow(winNameBackground, medianFilter.astype(np.uint8))
 
     cv2.imshow(winNameMotion, currentElement)
-    key = cv2.waitKey(10);
+    key = cv2.waitKey(10)
     if key == 27:
         cv2.destroyWindow(winNameMotion)
-        if (showBackground == True):
+        if showBackground:
             cv2.destroyWindow(winNameBackground)
-        break;
+        break
 
     # Save the image
     index = index + 1
-    if (saveFrames == True):
+    if saveFrames:
         filename = root + str(index) + '.jpg'
-        if (showBackground == True):
+        if showBackground:
             scipy.misc.imsave(filename, medianFilter.astype(np.uint8))
         else:
             scipy.misc.imsave(filename, currentElement)

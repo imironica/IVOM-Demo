@@ -22,7 +22,7 @@ cam = cv2.VideoCapture(0)
 # Open a new window
 winNameMotion = "Motion estimator frame difference"
 cv2.namedWindow(winNameMotion)
-if (showBackground == True):
+if showBackground:
     winNameBackground = "Background estimator frame difference"
     cv2.namedWindow(winNameBackground)
 
@@ -35,23 +35,23 @@ while True:
 
     # skip frames
     index = 0
-    while (index < skipFrames):
+    while index < skipFrames:
         currentFrame = cv2.cvtColor(cam.read()[1], cv2.COLOR_RGB2GRAY)
         index = index + 1
 
     # set filters - to remove the webcam noise (median / gaussian / uniform filters);
-    if (useGaussianFilter == False and useMedianFilter == False and useUniformFilter == False):
+    if useGaussianFilter == False and useMedianFilter == False and useUniformFilter == False:
         currentElement = np.abs(currentFrame.astype(int) - firstFrame.astype(int)).astype(np.uint8)
     else:
-        if (useMedianFilter == True):
+        if useMedianFilter:
             currentElement = np.abs(
                 ndimage.median_filter(currentFrame, 3).astype(int) - ndimage.median_filter(firstFrame, 3).astype(
                     int)).astype(np.uint8)
-        if (useGaussianFilter == True):
+        if useGaussianFilter:
             currentElement = np.abs(
                 ndimage.gaussian_filter(currentFrame, 3).astype(int) - ndimage.median_filter(firstFrame, 3).astype(
                     int)).astype(np.uint8)
-        if (useUniformFilter == True):
+        if useUniformFilter:
             currentElement = np.abs(
                 ndimage.uniform_filter(currentFrame, 3).astype(int) - ndimage.uniform_filter(firstFrame, 3).astype(
                     int)).astype(np.uint8)
@@ -64,18 +64,18 @@ while True:
 
     # show the image
     cv2.imshow(winNameMotion, currentElement)
-    if (showBackground == True):
+    if showBackground:
         cv2.imshow(winNameBackground, firstFrame.astype(np.uint8))
 
     key = cv2.waitKey(10)
     if key == 27:
         cv2.destroyWindow(winNameMotion)
-        if (showBackground == True):
+        if showBackground:
             cv2.destroyWindow(winNameBackground)
         break
 
     # Save the image
     indexSave = indexSave + 1
-    if (saveFrames == True):
+    if saveFrames:
         filename = root + str(indexSave) + '.jpg'
         scipy.misc.imsave(filename, currentElement)

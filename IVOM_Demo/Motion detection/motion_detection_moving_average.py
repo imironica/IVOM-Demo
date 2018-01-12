@@ -18,7 +18,7 @@ cam = cv2.VideoCapture(0)
 # Open a new window
 winNameMotion = "Motion estimator moving average"
 cv2.namedWindow(winNameMotion)
-if (showBackground == True):
+if showBackground:
     winNameBackgroung = "Background estimator moving average"
     cv2.namedWindow(winNameBackgroung)
 
@@ -44,7 +44,7 @@ while True:
     currentElement = currentElement.astype(np.uint8)
 
     # show the image
-    if (showBackground == True):
+    if showBackground:
         cv2.imshow(winNameBackgroung, average.astype(np.uint8))
 
     cv2.imshow(winNameMotion, currentElement)
@@ -52,15 +52,15 @@ while True:
     key = cv2.waitKey(10)
     if key == 27:
         cv2.destroyWindow(winNameMotion)
-        if (showBackground == True):
+        if showBackground:
             cv2.distroyWindow(winNameBackgroung)
         break
 
     # Save the image
     index = index + 1
-    if (saveFrames == True):
+    if saveFrames:
         filename = root + str(index) + '.jpg'
-        if (showBackground == True):
+        if showBackground:
             scipy.misc.imsave(filename, average.astype(np.uint8))
         else:
             scipy.misc.imsave(filename, currentElement)

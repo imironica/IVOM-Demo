@@ -1,5 +1,5 @@
 # Operating system libraries
-import os, sys
+import os
 import numpy as np
 
 # Image libraries
@@ -17,8 +17,8 @@ warnings.filterwarnings("ignore")
 root = os.path.dirname(os.path.realpath(__file__)) + '\\ShapeDB\\'
 dirs = os.listdir(root)
  
-featuresList = ['HU','ZERNIKE','MOMENTS'];
-file_to_save = 'image_list.csv';
+featuresList = ['HU','ZERNIKE','MOMENTS']
+file_to_save = 'image_list.csv'
 
 images = []
 descriptors = []
@@ -30,16 +30,16 @@ lastLabel = ''
 for file in dirs:
     images.append(file)
     indexUnderscore = file.find("-")
-    indexPoint = file.find(".");
-    if(indexUnderscore > 0):
+    indexPoint = file.find(".")
+    if indexUnderscore > 0:
         classValue = file[0:indexUnderscore]
-        if(lastLabel != classValue):
-            indexLabel += 1;
+        if lastLabel != classValue:
+            indexLabel += 1
         labels.append(indexLabel)
         lastLabel = classValue
 
 # Save the list of the files from the directory
-df = pd.DataFrame(images, columns=["colummn"]);
+df = pd.DataFrame(images, columns=["colummn"])
 df.to_csv(file_to_save, index=False, header = False)
 
 # Generate features
@@ -58,18 +58,18 @@ for currentFeature in featuresList:
 
         img = imread(root + file)
         img = color.rgb2gray(img)
-        print (file);
+        print (file)
 
         # compute Zernike moments
-        if(currentFeature == 'ZERNIKE'):
-            hist = mahotas.features.zernike_moments(img, 21);
+        if currentFeature == 'ZERNIKE':
+            hist = mahotas.features.zernike_moments(img, 21)
 
         # compute Hu moments
-        if(currentFeature == 'HU'):
-            hist = cv2.HuMoments(cv2.moments(img)).flatten();
+        if currentFeature == 'HU':
+            hist = cv2.HuMoments(cv2.moments(img)).flatten()
 
         # compute shape moments
-        if(currentFeature == 'MOMENTS'):
+        if currentFeature == 'MOMENTS':
             hist = cv2.moments(img)
         
         # append the current feature
@@ -79,5 +79,5 @@ for currentFeature in featuresList:
 
     # Save feature in a csv file
     feature_filename = currentFeature + '.csv'
-    df = pd.DataFrame(descriptors);
+    df = pd.DataFrame(descriptors)
     df.to_csv(feature_filename, index=False, header = False)

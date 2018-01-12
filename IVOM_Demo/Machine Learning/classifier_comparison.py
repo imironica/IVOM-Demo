@@ -21,17 +21,18 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.linear_model import LogisticRegression
+
 h = .02  # step size in the mesh
 
 names = ["Logistic Regression",
          "Linear SVM",
-         "Decision Tree", 
+         "Decision Tree",
          "Random Forest",
          "AdaBoost",
-         "Gradient Boosting", 
-         "Nearest Neighbors",  
-         "RBF SVM", 
-         "Neural Net", 
+         "Gradient Boosting",
+         "Nearest Neighbors",
+         "RBF SVM",
+         "Neural Net",
          "Naive Bayes"]
 
 classifiers = [
@@ -45,7 +46,7 @@ classifiers = [
     SVC(gamma=2, C=1),
     MLPClassifier(alpha=1),
     GaussianNB()
-    ]
+]
 
 X, y = make_classification(n_features=2, n_redundant=0, n_informative=2,
                            random_state=1, n_clusters_per_class=1)
@@ -60,9 +61,9 @@ datasets = [make_moons(noise=0.3, random_state=0),
 
 figure = plt.figure(figsize=(27, 9))
 i = 1
-# iterate over datasets
+# Iterate over datasets
 for ds_cnt, ds in enumerate(datasets):
-    # preprocess dataset, split into training and test part
+    # Preprocess dataset, split into training and test part
     X, y = ds
     X = StandardScaler().fit_transform(X)
     X_train, X_test, y_train, y_test = \
