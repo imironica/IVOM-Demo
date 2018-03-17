@@ -1,4 +1,4 @@
-# IVOM Demos
+# Human-Machine Interaction Course Demos
 <strong>IVOM course demos</strong>
 <br />
 <strong>Instalation guideline</strong>
